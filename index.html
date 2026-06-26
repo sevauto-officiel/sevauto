@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="SevAuto propose des véhicules premium vérifiés partout en Côte d'Ivoire, avec un siège à San Pedro et un contact direct via WhatsApp." />
+  <title>SevAuto - Véhicules premium à San Pedro</title>
+  <link rel="preload" as="image" href="img/ATimg.jpeg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a href="index.html" class="brand" aria-label="SevAuto accueil">
+        <span class="brand-mark">S</span>
+        <span>SevAuto</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="#catalog">Catalogue</a>
+        <a href="about.html">À propos</a>
+        <a class="nav-cta" href="https://wa.me/2250788523067?text=Bonjour%2C%20je%20voudrais%20plus%20d'informations" target="_blank" rel="noreferrer">WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Sélection premium en Côte d'Ivoire</p>
+        <h1>Des véhicules vérifiés, présentés avec l'exigence d'une vitrine haut de gamme.</h1>
+        <p class="hero-text">SevAuto simplifie votre achat automobile partout en Côte d'Ivoire : prix clairs, photos optimisées, contact direct et siège basé à San Pedro.</p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="#catalog">Voir le catalogue</a>
+          <a class="btn btn-light" href="https://wa.me/2250788523067?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20v%C3%A9hicules" target="_blank" rel="noreferrer">Contacter SevAuto</a>
+        </div>
+        <dl class="trust-strip" aria-label="Avantages SevAuto">
+          <div>
+            <dt>Disponibilité</dt>
+            <dd>Côte d'Ivoire</dd>
+          </div>
+          <div>
+            <dt>Siège</dt>
+            <dd>San Pedro</dd>
+          </div>
+          <div>
+            <dt>Catalogue</dt>
+            <dd>Chargement rapide</dd>
+          </div>
+        </dl>
+      </div>
+
+      <article class="hero-showcase" aria-label="Véhicule phare">
+        <div class="showcase-media">
+          <img src="img/ATimg.jpeg" alt="Véhicule premium SevAuto" width="900" height="650" fetchpriority="high" decoding="async" />
+        </div>
+        <div class="showcase-panel">
+          <div>
+            <p class="eyebrow compact">Modèle phare</p>
+            <h2>SevAuto GT Signature</h2>
+            <p>Grand tourisme premium, intérieur raffiné et accompagnement local jusqu'à la livraison.</p>
+          </div>
+          <div class="price-row">
+            <strong>79 990 €</strong>
+            <span>Ancien prix 89 990 €</span>
+          </div>
+          <a class="btn btn-green" href="produit.html?id=1">Consulter l'offre</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="promo-section shell" aria-labelledby="promo-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow compact">Promotions</p>
+          <h2 id="promo-title">Offres spéciales et nouveautés</h2>
+        </div>
+        <label class="search-box">
+          <span>Rechercher</span>
+          <input id="productSearch" type="search" placeholder="Modèle, catégorie, moteur..." autocomplete="off" />
+        </label>
+      </div>
+      <div class="promo-frame">
+        <div id="promoSlider" class="promo-slider" aria-live="polite"></div>
+        <button id="prevPromo" class="slider-btn slider-btn-prev" type="button" aria-label="Promotion précédente">‹</button>
+        <button id="nextPromo" class="slider-btn slider-btn-next" type="button" aria-label="Promotion suivante">›</button>
+      </div>
+    </section>
+
+    <section class="service-section shell" aria-labelledby="service-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow compact">Service client</p>
+          <h2 id="service-title">Un achat accompagné du premier message à la livraison</h2>
+        </div>
+        <p class="section-note">Chaque véhicule est présenté avec les informations essentielles pour vous aider à décider rapidement, où que vous soyez en Côte d'Ivoire.</p>
+      </div>
+      <div class="spec-grid service-grid">
+        <div class="spec-item"><strong>Contrôle</strong><span>Véhicules vérifiés avant publication dans le catalogue.</span></div>
+        <div class="spec-item"><strong>Réservation</strong><span>Échange direct via WhatsApp pour confirmer le modèle et les conditions.</span></div>
+        <div class="spec-item"><strong>Transparence</strong><span>Prix, disponibilité et caractéristiques visibles sans détour.</span></div>
+        <div class="spec-item"><strong>Disponibilité nationale</strong><span>Service ouvert partout en Côte d'Ivoire, avec un siège à San Pedro.</span></div>
+      </div>
+    </section>
+
+    <section id="catalog" class="catalog-section shell" aria-labelledby="catalog-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow compact">Catalogue</p>
+          <h2 id="catalog-title">Véhicules à la vente</h2>
+        </div>
+        <p class="section-note">Une grille claire et rapide : image, prix, disponibilité et action immédiate pour décider sans perdre de temps.</p>
+      </div>
+      <div id="catalog-container" class="catalog-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>
+        <h3>SevAuto</h3>
+        <p>Vente de véhicules premium partout en Côte d'Ivoire. Siège : San Pedro.</p>
+        <a class="footer-cta" href="https://wa.me/2250788523067" target="_blank" rel="noreferrer">Contactez-nous</a>
+        <a href="mailto:sevautooff@gmail.com">sevautooff@gmail.com</a>
+      </div>
+      <div>
+        <h4>Liens rapides</h4>
+        <a href="index.html">Accueil</a>
+        <a href="about.html">À propos</a>
+        <a href="index.html#catalog">Catalogue</a>
+      </div>
+      <div>
+        <h4>Légal</h4>
+        <a href="privacy.html">Confidentialité</a>
+        <a href="terms.html">Conditions</a>
+      </div>
+      <div>
+        <h4>Création</h4>
+        <p>Site développé et maintenu par <strong>CODERS 3W</strong>.</p>
+        <small>© 2026 SevAuto. Tous droits réservés.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

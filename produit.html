@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Détails d'un véhicule SevAuto avec photos, prix, disponibilité et contact WhatsApp." />
+  <title>Détails du véhicule - SevAuto</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a href="index.html" class="brand" aria-label="SevAuto accueil">
+        <span class="brand-mark">S</span>
+        <span>SevAuto</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="index.html#catalog">Catalogue</a>
+        <a href="about.html">À propos</a>
+        <a class="nav-cta" href="https://wa.me/2250788523067?text=Bonjour%2C%20je%20voudrais%20plus%20d'informations" target="_blank" rel="noreferrer">WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="product-main shell">
+    <section id="product-detail" class="product-layout">
+      <div class="stack">
+        <p class="eyebrow">Détails du véhicule</p>
+        <h1 id="product-name" class="product-title">Chargement...</h1>
+        <p id="product-description" class="product-lead">Veuillez patienter pendant que nous chargeons les informations du véhicule.</p>
+
+        <div class="quick-facts">
+          <div class="fact">
+            <span>Catégorie</span>
+            <strong id="product-category">-</strong>
+          </div>
+          <div class="fact">
+            <span>Prix</span>
+            <strong id="product-price">-</strong>
+          </div>
+          <div class="fact">
+            <span>Disponible à</span>
+            <strong>San Pedro</strong>
+          </div>
+          <div class="fact">
+            <span>État</span>
+            <strong id="stock-indicator">-</strong>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Spécifications</h2>
+          <div id="specs-container" class="spec-grid"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Couleurs disponibles</h2>
+          <div id="colors-container-btn" class="color-list"></div>
+        </div>
+
+        <div class="product-actions">
+          <a id="whatsapp-product-link" class="btn btn-green" href="https://wa.me/2250788523067?text=Je%20suis%20int%C3%A9ress%C3%A9" target="_blank" rel="noreferrer">Contacter le propriétaire</a>
+          <a class="btn btn-light" href="index.html#catalog">Retour au catalogue</a>
+        </div>
+      </div>
+
+      <aside class="stack" aria-label="Galerie et garanties">
+        <div class="panel">
+          <div class="main-product-image">
+            <img id="main-image" src="" alt="Véhicule SevAuto" width="760" height="570" fetchpriority="high" decoding="async" />
+          </div>
+          <div id="colors-container" class="thumb-grid" aria-label="Images du véhicule"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Pourquoi choisir SevAuto ?</h2>
+          <div class="spec-grid">
+            <div class="spec-item"><strong>Accompagnement</strong><span>Conseil direct à chaque étape.</span></div>
+            <div class="spec-item"><strong>Contrôle</strong><span>Véhicules vérifiés avant publication.</span></div>
+            <div class="spec-item"><strong>Contact</strong><span>Réponse rapide via WhatsApp.</span></div>
+            <div class="spec-item"><strong>Transparence</strong><span>Prix et stock affichés clairement.</span></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="related-section" aria-labelledby="related-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow compact">Suggestions</p>
+          <h2 id="related-title">Modèles similaires</h2>
+        </div>
+        <p class="section-note" id="related-note">Découvrez d'autres véhicules proches de ce modèle.</p>
+      </div>
+      <div id="related-products" class="catalog-grid related-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>
+        <h3>SevAuto</h3>
+        <p>Vente de véhicules premium à San Pedro, Côte d'Ivoire.</p>
+        <a class="footer-cta" href="https://wa.me/2250788523067" target="_blank" rel="noreferrer">Contactez-nous</a>
+      </div>
+      <div>
+        <h4>Liens rapides</h4>
+        <a href="index.html">Accueil</a>
+        <a href="about.html">À propos</a>
+        <a href="index.html#catalog">Catalogue</a>
+      </div>
+      <div>
+        <h4>Légal</h4>
+        <a href="privacy.html">Confidentialité</a>
+        <a href="terms.html">Conditions</a>
+      </div>
+      <div>
+        <h4>Création</h4>
+        <p>Site développé et maintenu par <strong>CODERS 3W</strong>.</p>
+        <small>© 2026 SevAuto. Tous droits réservés.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js" defer></script>
+  <script src="produit.js" defer></script>
+</body>
+</html>
