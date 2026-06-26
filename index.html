@@ -18,6 +18,7 @@
       <nav class="nav-links" aria-label="Navigation principale">
         <a href="index.html">Accueil</a>
         <a href="#catalog">Catalogue</a>
+        <a href="articles.html">Actualités</a>
         <a href="about.html">À propos</a>
         <a class="nav-cta" href="https://wa.me/2250788523067?text=Bonjour%2C%20je%20voudrais%20plus%20d'informations" target="_blank" rel="noreferrer">WhatsApp</a>
       </nav>
@@ -144,5 +145,19 @@
 
   <script src="data.js" defer></script>
   <script src="script.js" defer></script>
+
+  <!-- Redirection après connexion à l'administration (Netlify Identity) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
