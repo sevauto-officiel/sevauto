@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadSiteData();
   const params = new URLSearchParams(window.location.search);
   const productId = Number(params.get('id'));
 

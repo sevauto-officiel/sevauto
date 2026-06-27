@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadSiteData();
   renderPromotions(promotions);
   renderCatalog(products);
   setupInteractions();

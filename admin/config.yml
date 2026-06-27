@@ -11,6 +11,48 @@ site_url: https://sevauto.netlify.app
 display_url: https://sevauto.netlify.app
 
 collections:
+  - name: "catalogue"
+    label: "Catalogue (véhicules & promotions)"
+    files:
+      - name: "vehicules"
+        label: "Véhicules"
+        file: "data.json"
+        format: json
+        description: "Ajoutez, modifiez ou supprimez les véhicules du catalogue, ainsi que les promotions de la page d'accueil."
+        fields:
+          - label: "Véhicules"
+            name: "products"
+            label_singular: "Véhicule"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: "Identifiant unique (numéro)", name: "id", widget: "number", value_type: "int", hint: "Numéro unique, ne jamais répéter ni réutiliser. Ex: 1, 2, 3…" }
+              - { label: "Nom du véhicule", name: "name", widget: "string" }
+              - { label: "Prix (en chiffres, sans €)", name: "price", widget: "number", value_type: "int" }
+              - { label: "Ancien prix (optionnel, pour la remise)", name: "oldPrice", widget: "number", value_type: "int", required: false }
+              - { label: "Catégorie", name: "category", widget: "select", options: ["Luxe", "Sport", "Urbain", "Économique", "SUV"] }
+              - { label: "Photos", name: "images", widget: "list", field: { label: "Photo", name: "image", widget: "image" } }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Caractéristiques"
+                name: "specs"
+                widget: "object"
+                fields:
+                  - { label: "Moteur", name: "engine", widget: "string" }
+                  - { label: "Puissance", name: "power", widget: "string" }
+              - { label: "Couleurs", name: "colors", widget: "list", field: { label: "Couleur", name: "color", widget: "string" } }
+              - { label: "Mots-clés (pour la recherche)", name: "keywords", widget: "list", required: false, field: { label: "Mot-clé", name: "keyword", widget: "string" } }
+              - { label: "En stock", name: "inStock", widget: "boolean", default: true }
+          - label: "Promotions (carrousel accueil)"
+            name: "promotions"
+            label_singular: "Promotion"
+            widget: "list"
+            required: false
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Sous-titre", name: "subtitle", widget: "text", required: false }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Lien (ex: produit.html?id=1)", name: "link", widget: "string" }
   - name: "actualites"
     label: "Actualités"
     files:
