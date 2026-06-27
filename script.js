@@ -56,7 +56,7 @@ function renderCatalog(productList) {
 
 function promoSlideMarkup(promo, index, clone) {
   return `
-    <a href="${promo.link}" class="promo-slide-item"${clone ? ' aria-hidden="true" tabindex="-1"' : ''}>
+    <a href="${promoLink(promo)}" class="promo-slide-item"${clone ? ' aria-hidden="true" tabindex="-1"' : ''}>
       <img src="${promo.image}" alt="${promo.title}" width="900" height="520" loading="${index === 0 && !clone ? 'eager' : 'lazy'}" decoding="async">
       <div class="promo-copy">
         <p class="eyebrow compact">Promotion</p>
@@ -82,19 +82,69 @@ function renderPromotions(promoList) {
 
 function setupInteractions() {
   const searchInput = document.getElementById('productSearch');
+  const sortSelect = document.getElementById('sortSelect');
+  const inStockOnly = document.getElementById('inStockOnly');
+  const chipsContainer = document.getElementById('categoryFilters');
+  const resultsCount = document.getElementById('resultsCount');
 
-  function filteredProducts(query) {
-    const normalized = query.trim().toLowerCase();
-    if (!normalized) return products;
-    return products.filter(product => {
-      const keywords = Array.isArray(product.keywords) ? product.keywords.join(' ') : '';
-      return `${product.name} ${product.category} ${product.description} ${keywords}`.toLowerCase().includes(normalized);
-    });
+  // État des filtres du catalogue (recherche + catégorie + stock + tri).
+  const state = { query: '', category: 'all', inStock: false, sort: 'relevance' };
+
+  // Construit les boutons de catégorie à partir des véhicules existants.
+  function buildCategoryChips() {
+    if (!chipsContainer) return;
+    const categories = Array.from(new Set(products.map(p => p.category).filter(Boolean)))
+      .sort((a, b) => a.localeCompare(b, 'fr'));
+    const all = ['all', ...categories];
+    chipsContainer.innerHTML = all.map(cat => {
+      const label = cat === 'all' ? 'Tous' : cat;
+      const active = cat === state.category;
+      return `<button type="button" class="filter-chip${active ? ' is-active' : ''}" data-category="${cat}" aria-pressed="${active}">${label}</button>`;
+    }).join('');
   }
 
-  searchInput?.addEventListener('input', event => {
-    renderCatalog(filteredProducts(event.target.value));
+  function applyFilters() {
+    const q = state.query.trim().toLowerCase();
+    let list = products.filter(product => {
+      if (state.category !== 'all' && product.category !== state.category) return false;
+      if (state.inStock && !product.inStock) return false;
+      if (q) {
+        const keywords = Array.isArray(product.keywords) ? product.keywords.join(' ') : '';
+        const haystack = `${product.name} ${product.category} ${product.description} ${keywords}`.toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+      return true;
+    });
+
+    if (state.sort === 'price-asc') list = list.slice().sort((a, b) => a.price - b.price);
+    else if (state.sort === 'price-desc') list = list.slice().sort((a, b) => b.price - a.price);
+    else if (state.sort === 'name-asc') list = list.slice().sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+
+    renderCatalog(list);
+
+    if (resultsCount) {
+      const n = list.length;
+      resultsCount.textContent = n === 0
+        ? 'Aucun véhicule ne correspond à votre recherche.'
+        : `${n} véhicule${n > 1 ? 's' : ''} affiché${n > 1 ? 's' : ''}`;
+    }
+
+    if (window.refreshReveals) window.refreshReveals();
+  }
+
+  searchInput?.addEventListener('input', event => { state.query = event.target.value; applyFilters(); });
+  sortSelect?.addEventListener('change', event => { state.sort = event.target.value; applyFilters(); });
+  inStockOnly?.addEventListener('change', event => { state.inStock = event.target.checked; applyFilters(); });
+  chipsContainer?.addEventListener('click', event => {
+    const button = event.target.closest('.filter-chip');
+    if (!button) return;
+    state.category = button.dataset.category;
+    buildCategoryChips();
+    applyFilters();
   });
+
+  buildCategoryChips();
+  applyFilters();
 
   setupPromoCarousel();
 }

@@ -1,0 +1,22 @@
+{
+  "promotions": [
+    {
+      "title": "Offre privilège sur la SevAuto GT",
+      "subtitle": "Remise immédiate et accompagnement prioritaire jusqu'au 30 juin.",
+      "image": "img/ATimg.jpeg",
+      "linkVehicle": "SevAuto GT Signature"
+    },
+    {
+      "title": "SUV familial disponible en stock",
+      "subtitle": "Un modèle spacieux, robuste et prêt à être livré à San Pedro.",
+      "image": "img/ATimg1.jpeg",
+      "linkVehicle": "SevAuto SUV Premium"
+    },
+    {
+      "title": "Sélection prestige pour clients WhatsApp",
+      "subtitle": "Des conditions exclusives pour les demandes confirmées rapidement.",
+      "image": "img/ATimg2.jpeg",
+      "linkVehicle": "SevAuto Elite Prestige"
+    }
+  ]
+}

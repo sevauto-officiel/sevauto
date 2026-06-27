@@ -7,26 +7,30 @@ public_folder: "/img"
 
 locale: "fr"
 
+logo_url: https://sevauto.netlify.app/img/ATimg.jpeg
+
 site_url: https://sevauto.netlify.app
 display_url: https://sevauto.netlify.app
 
 collections:
-  - name: "catalogue"
-    label: "Catalogue (véhicules & promotions)"
+  - name: "vehicules"
+    label: "Véhicules"
+    label_singular: "Véhicule"
+    icon: "car"
     files:
-      - name: "vehicules"
-        label: "Véhicules"
+      - name: "liste"
+        label: "Catalogue des véhicules"
         file: "data.json"
         format: json
-        description: "Ajoutez, modifiez ou supprimez les véhicules du catalogue, ainsi que les promotions de la page d'accueil."
+        description: "Ajoutez, modifiez ou supprimez les véhicules. Le numéro d'identification est géré automatiquement : vous n'avez rien à saisir."
         fields:
           - label: "Véhicules"
             name: "products"
             label_singular: "Véhicule"
             widget: "list"
-            summary: "{{fields.name}} — {{fields.price}}"
+            collapsed: true
+            summary: "{{fields.name}} — {{fields.price}} F CFA"
             fields:
-              - { label: "Identifiant unique (numéro)", name: "id", widget: "number", value_type: "int", hint: "Numéro unique, ne jamais répéter ni réutiliser. Ex: 1, 2, 3…" }
               - { label: "Nom du véhicule", name: "name", widget: "string" }
               - { label: "Prix en F CFA (chiffres uniquement)", name: "price", widget: "number", value_type: "int", hint: "Montant en francs CFA, sans espace ni symbole. Ex: 52500000" }
               - { label: "Ancien prix en F CFA (optionnel, pour la remise)", name: "oldPrice", widget: "number", value_type: "int", required: false }
@@ -42,19 +46,44 @@ collections:
               - { label: "Couleurs", name: "colors", widget: "list", field: { label: "Couleur", name: "color", widget: "string" } }
               - { label: "Mots-clés (pour la recherche)", name: "keywords", widget: "list", required: false, field: { label: "Mot-clé", name: "keyword", widget: "string" } }
               - { label: "En stock", name: "inStock", widget: "boolean", default: true }
-          - label: "Promotions (carrousel accueil)"
+
+  - name: "promotions"
+    label: "Promotions (accueil)"
+    label_singular: "Promotion"
+    icon: "star"
+    files:
+      - name: "liste"
+        label: "Promotions du carrousel"
+        file: "promotions.json"
+        format: json
+        description: "Gérez les offres qui défilent sur la page d'accueil. Choisissez simplement le véhicule mis en avant dans la liste déroulante : le lien reste toujours correct."
+        fields:
+          - label: "Promotions"
             name: "promotions"
             label_singular: "Promotion"
             widget: "list"
+            collapsed: true
             required: false
             summary: "{{fields.title}}"
             fields:
               - { label: "Titre", name: "title", widget: "string" }
               - { label: "Sous-titre", name: "subtitle", widget: "text", required: false }
               - { label: "Image", name: "image", widget: "image" }
-              - { label: "Lien (ex: produit.html?id=1)", name: "link", widget: "string" }
+              - label: "Véhicule mis en avant"
+                name: "linkVehicle"
+                widget: "relation"
+                collection: "vehicules"
+                file: "liste"
+                search_fields: ["products.*.name"]
+                display_fields: ["products.*.name"]
+                value_field: "products.*.name"
+                required: false
+                hint: "Choisissez le véhicule vers lequel cette promotion doit rediriger."
+
   - name: "actualites"
     label: "Actualités"
+    label_singular: "Article"
+    icon: "page"
     files:
       - name: "articles"
         label: "Articles du blog"
@@ -66,6 +95,7 @@ collections:
             name: "articles"
             label_singular: "Article"
             widget: "list"
+            collapsed: true
             summary: "{{fields.title}}"
             fields:
               - { label: "Titre", name: "title", widget: "string" }

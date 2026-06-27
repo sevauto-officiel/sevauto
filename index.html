@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="SevAuto propose des véhicules premium vérifiés partout en Côte d'Ivoire, avec un siège à San Pedro et un contact direct via WhatsApp." />
   <title>SevAuto - Véhicules premium à San Pedro</title>
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#1a9d56" />
+  <link rel="canonical" href="https://sevauto.netlify.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SevAuto" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content="SevAuto - Véhicules premium en Côte d'Ivoire" />
+  <meta property="og:description" content="Des véhicules vérifiés, prix clairs en F CFA et contact WhatsApp direct. Siège à San Pedro." />
+  <meta property="og:image" content="https://sevauto.netlify.app/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://sevauto.netlify.app/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SevAuto - Véhicules premium en Côte d'Ivoire" />
+  <meta name="twitter:description" content="Des véhicules vérifiés, prix clairs en F CFA et contact WhatsApp direct. Siège à San Pedro." />
+  <meta name="twitter:image" content="https://sevauto.netlify.app/img/og-image.jpg" />
   <link rel="preload" as="image" href="img/ATimg.jpeg" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -76,7 +96,7 @@
           <p class="eyebrow compact">Promotions</p>
           <h2 id="promo-title">Offres spéciales et nouveautés</h2>
         </div>
-        <p class="section-note">Les mises en avant du moment. Faites glisser le carrousel pour découvrir chaque offre.</p>
+        <p class="section-note">Les mises en avant du moment défilent automatiquement. Utilisez les flèches ou faites glisser pour explorer chaque offre.</p>
       </div>
       <div class="promo-frame">
         <div id="promoSlider" class="promo-slider" aria-live="polite"></div>
@@ -113,6 +133,22 @@
           <input id="productSearch" type="search" placeholder="Modèle, catégorie, moteur..." autocomplete="off" />
         </label>
       </div>
+      <div class="catalog-toolbar" role="group" aria-label="Filtres du catalogue">
+        <div id="categoryFilters" class="filter-chips" role="group" aria-label="Filtrer par catégorie"></div>
+        <div class="catalog-controls">
+          <label class="filter-check"><input type="checkbox" id="inStockOnly" /> En stock uniquement</label>
+          <label class="filter-sort">
+            <span class="visually-hidden">Trier les véhicules</span>
+            <select id="sortSelect" aria-label="Trier les véhicules">
+              <option value="relevance">Trier : pertinence</option>
+              <option value="price-asc">Prix croissant</option>
+              <option value="price-desc">Prix décroissant</option>
+              <option value="name-asc">Nom (A → Z)</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <p id="resultsCount" class="results-count" aria-live="polite"></p>
       <div id="catalog-container" class="catalog-grid"></div>
     </section>
   </main>

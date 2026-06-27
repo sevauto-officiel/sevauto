@@ -1,25 +1,51 @@
 let products = [];
 let promotions = [];
 
+async function fetchJson(url) {
+  const response = await fetch(url, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
+}
+
 async function loadSiteData() {
   try {
-    const response = await fetch('data.json', { cache: 'no-store' });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    promotions = Array.isArray(data.promotions) ? data.promotions : [];
+    const data = await fetchJson('data.json');
     products = Array.isArray(data.products) ? data.products : [];
+
+    // Les promotions ont leur propre fichier ; repli sur data.json pour rester compatible.
+    try {
+      const promoData = await fetchJson('promotions.json');
+      promotions = Array.isArray(promoData.promotions) ? promoData.promotions : [];
+    } catch (error) {
+      promotions = Array.isArray(data.promotions) ? data.promotions : [];
+    }
   } catch (error) {
-    console.error('Impossible de charger data.json', error);
-    promotions = [];
+    console.error('Impossible de charger les données du site', error);
     products = [];
+    promotions = [];
   }
+
+  // Identifiants attribués automatiquement selon la position : uniques, sans doublon,
+  // et réindexés tout seuls dès qu'un véhicule est ajouté ou supprimé.
+  products.forEach((product, index) => { product.id = index + 1; });
+
   return { products, promotions };
 }
 
 function addProduct(newProduct) {
-  const id = products.length ? Math.max(...products.map(product => product.id)) + 1 : 1;
-  products.push({ ...newProduct, id });
+  products.push({ ...newProduct });
+  products.forEach((product, index) => { product.id = index + 1; });
   return products;
+}
+
+// Construit le lien d'une promotion : à partir du véhicule choisi (menu déroulant)
+// ou, à défaut, de l'ancien champ « lien » saisi manuellement.
+function promoLink(promo) {
+  if (promo && promo.linkVehicle) {
+    const index = products.findIndex(product => product.name === promo.linkVehicle);
+    if (index >= 0) return `produit.html?id=${index + 1}`;
+  }
+  return promo && promo.link ? promo.link : 'index.html#catalog';
 }
 
 function getProductById(id) {
