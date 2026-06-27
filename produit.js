@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Vérifier que window.location existe et est accessible
+  if (!window.location || !window.location.search) {
+    window.location.href = 'index.html#catalog';
+    return;
+  }
+
   const params = new URLSearchParams(window.location.search);
   const productId = Number(params.get('id'));
 
@@ -7,8 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // Vérifier que products est défini (data.js chargé)
+  if (typeof getProductById !== 'function' || !products) {
+    console.error('Erreur : data.js n\'a pas été chargé');
+    window.location.href = 'index.html#catalog';
+    return;
+  }
+
   const product = getProductById(productId);
   const detail = document.getElementById('product-detail');
+
+  if (!detail) {
+    console.error('Erreur : élément product-detail introuvable');
+    return;
+  }
 
   if (!product) {
     detail.innerHTML = '<div class="empty-state">Véhicule introuvable. <a href="index.html#catalog">Retour au catalogue</a></div>';
