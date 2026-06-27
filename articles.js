@@ -41,6 +41,8 @@ function renderArticles(container, articles) {
       </article>
     `;
   }).join('');
+
+  if (window.refreshReveals) window.refreshReveals();
 }
 
 function renderMarkdown(markdown) {

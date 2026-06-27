@@ -28,8 +28,8 @@ collections:
             fields:
               - { label: "Identifiant unique (numéro)", name: "id", widget: "number", value_type: "int", hint: "Numéro unique, ne jamais répéter ni réutiliser. Ex: 1, 2, 3…" }
               - { label: "Nom du véhicule", name: "name", widget: "string" }
-              - { label: "Prix (en chiffres, sans €)", name: "price", widget: "number", value_type: "int" }
-              - { label: "Ancien prix (optionnel, pour la remise)", name: "oldPrice", widget: "number", value_type: "int", required: false }
+              - { label: "Prix en F CFA (chiffres uniquement)", name: "price", widget: "number", value_type: "int", hint: "Montant en francs CFA, sans espace ni symbole. Ex: 52500000" }
+              - { label: "Ancien prix en F CFA (optionnel, pour la remise)", name: "oldPrice", widget: "number", value_type: "int", required: false }
               - { label: "Catégorie", name: "category", widget: "select", options: ["Luxe", "Sport", "Urbain", "Économique", "SUV"] }
               - { label: "Photos", name: "images", widget: "list", field: { label: "Photo", name: "image", widget: "image" } }
               - { label: "Description", name: "description", widget: "text" }

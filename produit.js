@@ -18,11 +18,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   renderProductDetail(product);
   renderRelatedProducts(product);
+  if (window.refreshReveals) window.refreshReveals();
 });
 
 const productMoney = new Intl.NumberFormat('fr-FR', {
   style: 'currency',
-  currency: 'EUR',
+  currency: 'XOF',
   maximumFractionDigits: 0
 });
 
@@ -39,8 +40,7 @@ function renderProductDetail(product) {
   mainImage.alt = product.name;
 
   const whatsapp = document.getElementById('whatsapp-product-link');
-  const message = encodeURIComponent('Bonjour, je suis intéressé par ' + product.name);
-  whatsapp.href = `https://wa.me/2250788523067?text=${message}`;
+  whatsapp.href = vehicleWhatsappLink(product);
 
   renderThumbnails(product, mainImage);
   renderSpecs(product.specs);
@@ -116,7 +116,7 @@ function renderRelatedProducts(currentProduct) {
     const discount = product.oldPrice
       ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
       : 0;
-    const whatsappText = encodeURIComponent(`Bonjour, je suis intéressé par ${product.name}`);
+    const whatsappHref = vehicleWhatsappLink(product);
 
     return `
       <article class="vehicle-card">
@@ -137,7 +137,7 @@ function renderRelatedProducts(currentProduct) {
           </div>
           <div class="vehicle-actions">
             <a class="btn btn-dark" href="produit.html?id=${product.id}">Détails</a>
-            <a class="btn btn-light" href="https://wa.me/2250788523067?text=${whatsappText}" target="_blank" rel="noreferrer">Contact</a>
+            <a class="btn btn-light" href="${whatsappHref}" target="_blank" rel="noreferrer">Contact</a>
           </div>
         </div>
       </article>
