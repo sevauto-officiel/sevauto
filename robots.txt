@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://sevauto.netlify.app/sitemap.xml
+Sitemap: https://akmservive.netlify.app/sitemap.xml

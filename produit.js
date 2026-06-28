@@ -28,7 +28,7 @@ const productMoney = new Intl.NumberFormat('fr-FR', {
 });
 
 function renderProductDetail(product) {
-  document.title = `${product.name} - SevAuto`;
+  document.title = `${product.name} - AKMServive`;
   setText('product-name', product.name);
   setText('product-category', product.category);
   setText('product-price', productMoney.format(product.price));
@@ -39,8 +39,24 @@ function renderProductDetail(product) {
   mainImage.src = product.images[0];
   mainImage.alt = product.name;
 
+  // Replace direct link with modal-trigger button to personalize message
   const whatsapp = document.getElementById('whatsapp-product-link');
-  whatsapp.href = vehicleWhatsappLink(product);
+  if (whatsapp) {
+    whatsapp.dataset.productName = product.name;
+    whatsapp.classList.add('contact-btn');
+    whatsapp.removeAttribute('href');
+    whatsapp.addEventListener('click', () => {
+      // reuse the site's modal — open with service name
+      const modal = document.getElementById('contactModal');
+      if (!modal) return;
+      modal.dataset.service = `Véhicule: ${product.name}`;
+      const desc = document.getElementById('contactServiceDesc');
+      if (desc) desc.textContent = `Demande concernant : ${product.name}. Remplissez vos coordonnées pour personnaliser le message.`;
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
+      document.getElementById('contactFirst').focus();
+    });
+  }
 
   renderThumbnails(product, mainImage);
   renderSpecs(product.specs);
@@ -137,7 +153,7 @@ function renderRelatedProducts(currentProduct) {
           </div>
           <div class="vehicle-actions">
             <a class="btn btn-dark" href="produit.html?id=${product.id}">Détails</a>
-            <a class="btn btn-light" href="${whatsappHref}" target="_blank" rel="noreferrer">Contact</a>
+            <button class="btn btn-light contact-btn" data-product-name="${product.name}">Contact</button>
           </div>
         </div>
       </article>

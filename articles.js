@@ -24,7 +24,7 @@ function renderArticles(container, articles) {
   container.innerHTML = sorted.map(article => {
     const dateLabel = formatDate(article.date);
     const cover = article.image
-      ? `<img class="article-cover" src="${escapeAttr(article.image)}" alt="${escapeAttr(article.title || 'Article SevAuto')}" loading="lazy" decoding="async">`
+      ? `<img class="article-cover" src="${escapeAttr(article.image)}" alt="${escapeAttr(article.title || 'Article AKMServive')}" loading="lazy" decoding="async">`
       : '';
     const body = article.body ? renderMarkdown(article.body) : '';
     const summary = article.summary ? `<p class="article-summary">${escapeHtml(article.summary)}</p>` : '';

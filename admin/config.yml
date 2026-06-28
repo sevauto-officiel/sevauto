@@ -7,10 +7,10 @@ public_folder: "/img"
 
 locale: "fr"
 
-logo_url: https://sevauto.netlify.app/img/ATimg.jpeg
+logo_url: https://akmservive.netlify.app/img/ATimg.jpeg
 
-site_url: https://sevauto.netlify.app
-display_url: https://sevauto.netlify.app
+site_url: https://akmservive.netlify.app
+display_url: https://akmservive.netlify.app
 
 collections:
   - name: "vehicules"

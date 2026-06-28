@@ -1,7 +1,7 @@
 {
   "promotions": [
     {
-      "title": "Offre privilège sur la SevAuto GT",
+      "title": "Offre privilège sur la AKMServive GT",
       "subtitle": "Remise immédiate et accompagnement prioritaire jusqu'au 30 juin.",
       "image": "img/ATimg.jpeg",
       "link": "produit.html?id=1"
@@ -22,7 +22,7 @@
   "products": [
     {
       "id": 1,
-      "name": "SevAuto GT Signature",
+      "name": "AKMServive GT Signature",
       "price": 52500000,
       "oldPrice": 59000000,
       "category": "Luxe",
@@ -38,7 +38,7 @@
     },
     {
       "id": 2,
-      "name": "SevAuto RS Performance",
+      "name": "AKMServive RS Performance",
       "price": 39500000,
       "oldPrice": 44500000,
       "category": "Sport",
@@ -54,7 +54,7 @@
     },
     {
       "id": 3,
-      "name": "SevAuto Urban Plus",
+      "name": "AKMServive Urban Plus",
       "price": 32500000,
       "oldPrice": 36000000,
       "category": "Urbain",
@@ -70,7 +70,7 @@
     },
     {
       "id": 4,
-      "name": "SevAuto City Access",
+      "name": "AKMServive City Access",
       "price": 26000000,
       "oldPrice": 28000000,
       "category": "Économique",
@@ -86,7 +86,7 @@
     },
     {
       "id": 5,
-      "name": "SevAuto Elite Prestige",
+      "name": "AKMServive Elite Prestige",
       "price": 59000000,
       "oldPrice": 65500000,
       "category": "Luxe",
@@ -102,7 +102,7 @@
     },
     {
       "id": 6,
-      "name": "SevAuto SUV Premium",
+      "name": "AKMServive SUV Premium",
       "price": 46000000,
       "oldPrice": 49000000,
       "category": "SUV",

@@ -1,10 +1,10 @@
-# SevAuto
+# AKMServive
 
 Site de vente et location de véhicule d'occasion. Fondé par Akesse Kamlan Justin et développé par CODERS 3W.
 
 ## 📋 Description
 
-SevAuto propose des véhicules premium vérifiés partout en Côte d'Ivoire, avec un siège à San Pedro et un contact direct via WhatsApp.
+AKMServive propose des véhicules premium vérifiés partout en Côte d'Ivoire, avec un siège à San Pedro et un contact direct via WhatsApp.
 
 ## 🚀 Fonctionnalités
 
@@ -18,7 +18,7 @@ SevAuto propose des véhicules premium vérifiés partout en Côte d'Ivoire, ave
 ## 📁 Structure du projet
 
 ```
-sevauto/
+akmservive/
 ├── index.html           # Page d'accueil
 ├── produit.html         # Détails d'un véhicule
 ├── articles.html        # Page actualités
@@ -48,7 +48,7 @@ sevauto/
 
 1. Accédez à [netlify.com](https://netlify.com)
 2. Cliquez "Add new site" → "Import an existing project"
-3. Sélectionnez le dépôt `sevauto-officiel/sevauto`
+3. Sélectionnez le dépôt `akmservive-officiel/akmservive`
 4. Netlify détecte automatiquement la configuration
 5. Votre site est en ligne ! 🎉
 
@@ -59,6 +59,14 @@ Le fichier `netlify.toml` gère :
 - **Routing** : Redirige vers index.html (SPA support)
 - **Headers de sécurité** : X-Frame-Options, X-XSS-Protection, etc.
 - **Caching** : Images/CSS/JS en cache 1 an
+
+### Variables d'environnement Netlify
+
+Pour activer les exemples de fonctions serverless dans `netlify/functions/`, ajoutez ces variables dans Netlify :
+- `NETLIFY_TOKEN` : token d'accès Netlify (personal access token) avec les scopes appropriés.
+- `SITE_ID` : ID du site Netlify à cibler.
+
+Pour la gestion d'identité, les scopes recommandés sont : `identity:read`, `sites:read` et `identity:write` si vous supprimez ou modifiez des utilisateurs.
 
 ## 🔧 Développement local
 
@@ -143,11 +151,11 @@ Mettez à jour `articles.json` :
 ## 📞 Contact
 
 - **WhatsApp** : +225 07 88 52 30 67
-- **Email** : sevautooff@gmail.com
+- **Email** : contact@akmservive.com
 - **Localisation** : San Pedro, Côte d'Ivoire
 
 ## 📄 Licence
 
-© 2026 SevAuto. Tous droits réservés.
+© 2026 AKMServive. Tous droits réservés.
 
 Développé et maintenu par **CODERS 3W**.

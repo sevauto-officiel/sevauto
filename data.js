@@ -57,7 +57,7 @@ function filterProducts(category) {
   return products.filter(product => product.category === category);
 }
 
-const SEVAUTO_WHATSAPP = '2250788523067';
+const AKMSERVIVE_WHATSAPP = '2250788523067';
 
 const whatsappMoney = new Intl.NumberFormat('fr-FR', {
   style: 'currency',
@@ -68,7 +68,7 @@ const whatsappMoney = new Intl.NumberFormat('fr-FR', {
 // Construit un message WhatsApp professionnel reprenant les infos du véhicule.
 function vehicleWhatsappLink(product) {
   if (!product) {
-    return `https://wa.me/${SEVAUTO_WHATSAPP}?text=${encodeURIComponent('Bonjour SevAuto, je souhaite obtenir des renseignements sur vos véhicules.')}`;
+    return `https://wa.me/${AKMSERVIVE_WHATSAPP}?text=${encodeURIComponent('Bonjour AKMServive, je souhaite obtenir des renseignements sur vos véhicules.')}`;
   }
 
   let pageUrl = `produit.html?id=${product.id}`;
@@ -79,7 +79,7 @@ function vehicleWhatsappLink(product) {
   }
 
   const lines = [
-    'Bonjour SevAuto,',
+    'Bonjour AKMServive,',
     '',
     'Je souhaite obtenir plus de renseignements sur ce véhicule :',
     '',
@@ -94,5 +94,5 @@ function vehicleWhatsappLink(product) {
   lines.push('');
   lines.push('Pourriez-vous me préciser la disponibilité, les modalités de paiement et de livraison, ainsi que les conditions ? Merci d\'avance.');
 
-  return `https://wa.me/${SEVAUTO_WHATSAPP}?text=${encodeURIComponent(lines.join('\n'))}`;
+  return `https://wa.me/${AKMSERVIVE_WHATSAPP}?text=${encodeURIComponent(lines.join('\n'))}`;
 }

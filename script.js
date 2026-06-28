@@ -46,7 +46,7 @@ function renderCatalog(productList) {
           </div>
           <div class="vehicle-actions">
             <a class="btn btn-dark" href="produit.html?id=${product.id}">Détails</a>
-            <a class="btn btn-light" href="${whatsappHref}" target="_blank" rel="noreferrer">Contact</a>
+            <button class="btn btn-light contact-btn" data-product-name="${product.name}">Contact</button>
           </div>
         </div>
       </article>
@@ -147,6 +147,87 @@ function setupInteractions() {
   applyFilters();
 
   setupPromoCarousel();
+  setupContactFlows();
+}
+
+function setupContactFlows() {
+  // Attach handlers to any element with .contact-service or .contact-btn
+  document.querySelectorAll('.contact-service, .contact-btn').forEach(btn => {
+    btn.addEventListener('click', openContactModalFromButton);
+  });
+
+  let modal = document.getElementById('contactModal');
+  let form = document.getElementById('contactForm');
+  const cancel = document.getElementById('contactCancel');
+
+  // If modal doesn't exist in DOM yet, create it.
+  if (!modal) {
+    const template = document.createElement('div');
+    template.innerHTML = `
+      <div id="contactModal" class="contact-modal" aria-hidden="true" role="dialog" aria-label="Contact AKMServive">
+        <div class="contact-panel" role="document">
+          <h3>Contacter AKMServive</h3>
+          <p id="contactServiceDesc">Remplissez vos coordonnées pour personnaliser le message WhatsApp.</p>
+          <form id="contactForm">
+            <div class="contact-row">
+              <input id="contactFirst" name="first" placeholder="Prénom" required />
+              <input id="contactLast" name="last" placeholder="Nom" required />
+            </div>
+            <textarea id="contactMessage" name="message" placeholder="Message (optionnel)" rows="4" style="width:100%;margin-top:10px;padding:10px;border-radius:10px;border:1px solid var(--line);"></textarea>
+            <div class="contact-actions">
+              <button type="button" id="contactCancel" class="btn">Annuler</button>
+              <button type="submit" class="btn btn-dark">Envoyer via WhatsApp</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(template.firstElementChild);
+    modal = document.getElementById('contactModal');
+    form = document.getElementById('contactForm');
+  }
+
+  cancel?.addEventListener('click', () => closeModal());
+
+  form?.addEventListener('submit', event => {
+    event.preventDefault();
+    const first = document.getElementById('contactFirst').value.trim();
+    const last = document.getElementById('contactLast').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+    const service = modal.dataset.service || 'Demande';
+    const textLines = [];
+    textLines.push(`Bonjour AKMServive,`);
+    textLines.push('');
+    textLines.push(`Je suis ${first} ${last}.`);
+    textLines.push(`Service demandé : ${service}`);
+    if (message) textLines.push('');
+    if (message) textLines.push(message);
+    textLines.push('');
+    textLines.push('Merci de me recontacter.');
+
+    const url = `https://wa.me/${AKMSERVIVE_WHATSAPP}?text=${encodeURIComponent(textLines.join('\n'))}`;
+    window.open(url, '_blank');
+    closeModal();
+  });
+
+  function openContactModalFromButton(e) {
+    const btn = e.currentTarget;
+    const service = btn.dataset.service || btn.dataset-productName || 'Demande';
+    const modal = document.getElementById('contactModal');
+    const desc = document.getElementById('contactServiceDesc');
+    modal.dataset.service = service;
+    desc.textContent = `Vous allez envoyer une demande pour : ${service}. Remplissez vos coordonnées pour personnaliser le message.`;
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    document.getElementById('contactFirst').focus();
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('contactModal');
+    if (!modal) return;
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+  }
 }
 
 function setupPromoCarousel() {

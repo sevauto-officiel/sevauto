@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AKMServive — Gestion des administrateurs</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="shell">
+    <h1>Gestion des administrateurs</h1>
+    <p>Interface d'exemple pour lister et supprimer des administrateurs (nécessite configuration serverless).</p>
+    <div id="adminList">Chargement…</div>
+  </main>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    async function fetchAdmins() {
+      const res = await fetch('/.netlify/functions/list-admins');
+      const data = await res.json();
+      const cont = document.getElementById('adminList');
+      if (!data || !data.users) return cont.textContent = 'Aucun utilisateur récupéré';
+      // Render simple list
+      cont.innerHTML = '<ul>' + data.users.map(u => `<li>${u.email} - ${u.role || ''} <button data-id="${u.id}" class="del">Supprimer</button></li>`).join('') + '</ul>';
+      document.querySelectorAll('.del').forEach(btn => btn.addEventListener('click', async e => {
+        const id = e.target.dataset.id;
+        if (!confirm('Confirmer la suppression de cet utilisateur ?')) return;
+        const resp = await fetch('/.netlify/functions/delete-admin', {method:'POST', body: JSON.stringify({userId: id})});
+        if (resp.ok) { alert('Supprimé (ou demande envoyée)'); fetchAdmins(); } else alert('Erreur');
+      }));
+    }
+    fetchAdmins();
+  </script>
+</body>
+</html>
